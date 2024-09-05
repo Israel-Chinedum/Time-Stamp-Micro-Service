@@ -1,0 +1,18 @@
+{
+  "name": "time-stamp-micro-service",
+  "version": "1.0.0",
+  "description": "a time stamp micro service that takes in dates in string format and converts them to utc format",
+  "main": "timeStampServer.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "timeStamp": "nodemon timeStampServer.js"
+  },
+  "author": "Favour Israel",
+  "license": "ISC",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "ejs": "^3.1.10",
+    "express": "^4.19.2"
+  },
+  "type": "module"
+}
