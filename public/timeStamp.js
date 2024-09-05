@@ -3,7 +3,6 @@ const input = document.querySelector('#input');
 const output = document.querySelector('#output');
 
 form.addEventListener('submit', e => {
-    let problem;
     e.preventDefault();
     fetch('/api-unix-utc', {
         headers: {'Content-Type': 'text/plain'},
@@ -15,11 +14,11 @@ form.addEventListener('submit', e => {
     }).then(({res, data}) => {
 
         if(!res.ok){
+            output.innerHTML = `<p style="color: red">error : ${data.error}</p>`
             throw new Error(data.error);
         } 
 
         output.innerHTML = `[unix: ${data.unix}, utc: ${data.utc}]`;
-        console.log(data);
         
     }).catch(err => console.log(err));
 })

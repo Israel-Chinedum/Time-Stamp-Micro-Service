@@ -14,9 +14,10 @@
 }
 
 #output{
-    margin-bottom: 50vh;
     font-size: 1.5rem;
-    color: lightseagreen
+    color: lightseagreen;
+    margin-bottom: 50vh;
+    position: absolute;
 }
 
 #form{
