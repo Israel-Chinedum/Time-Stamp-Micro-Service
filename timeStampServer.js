@@ -1,6 +1,5 @@
 
 import express from 'express';
-import { utcString } from './utcString.js';
 import cors from 'cors';
 
 const app = express();
@@ -35,11 +34,11 @@ app.get('/api/:date?', (req, res) => {
         if(isNaN(unix)){
             res.status(400).json({error: "Invalid Date"});
         } else{
-            res.json({unix: unix, utc: utcString(date)});
+            res.json({unix: unix, utc: date.toUTCString()});
         }
     } else{
         const date = new Date();
-        res.json({unix: date.getTime(), utc: utcString(date)});
+        res.json({unix: date.getTime(), utc: date.toUTCString()});
     }
     
 });
@@ -48,3 +47,5 @@ app.get('/api/:date?', (req, res) => {
 app.listen(2500, 'localhost', () => {
     console.log('Now Listening on port 2500');
 });
+
+
