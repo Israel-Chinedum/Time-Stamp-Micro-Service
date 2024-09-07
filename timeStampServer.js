@@ -2,7 +2,6 @@
 import express from 'express';
 import { utcString } from './utcString.js';
 import cors from 'cors';
-import fs from 'fs'
 
 const app = express();
 
@@ -25,24 +24,22 @@ app.get('', (req, res) => {
 });
 
 // POST ROUTE HANDLER
-app.post('/api/:date?', (req, res) => {
 
-    if(req.body == ''){
-        const date = new Date();
-        const unix = date.getTime()/1000;
-        res.json({unix: unix, utc: utcString(date, 'time')});
-        return;
-    }
+app.get('/api/:date?', (req, res) => {
 
-    const date = new Date(req.body);
+    let value = req.params.date;
 
-    //CONVERT TO UNIX
-    const unix = date.getTime()/1000;
-
-    if(isNaN(unix)){
-        res.status(400).json({error: "Invalid Date"});
+    if(value){
+        const date = new Date(value);
+        const unix = date.getTime();
+        if(isNaN(unix)){
+            res.status(400).json({error: "Invalid Date"});
+        } else{
+            res.json({unix: unix, utc: utcString(date)});
+        }
     } else{
-        res.json({unix: unix, utc: utcString(date)});
+        const date = new Date();
+        res.json({unix: date.getTime(), utc: utcString(date)});
     }
     
 });
@@ -51,5 +48,3 @@ app.post('/api/:date?', (req, res) => {
 app.listen(2500, 'localhost', () => {
     console.log('Now Listening on port 2500');
 });
-
-
