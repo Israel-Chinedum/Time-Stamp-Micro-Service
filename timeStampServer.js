@@ -25,7 +25,7 @@ app.get('', (req, res) => {
 });
 
 // POST ROUTE HANDLER
-app.post('/api-unix-utc', (req, res) => {
+app.post('/api/:date?', (req, res) => {
 
     if(req.body == ''){
         const date = new Date();

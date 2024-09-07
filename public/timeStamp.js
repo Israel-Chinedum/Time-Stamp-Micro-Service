@@ -4,7 +4,7 @@ const output = document.querySelector('#output');
 
 form.addEventListener('submit', e => {
     e.preventDefault();
-    fetch('/api-unix-utc', {
+    fetch('/api/:date?', {
         headers: {'Content-Type': 'text/plain'},
         method: 'post',
         body: `${input.value}`
